@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cognitech Labs Inbox</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .b-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-vr {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 350px;
+        }
+
+        .active {
+            background-color: red;
+            border-color: red;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="d-flex flex-nowrap vh-100">
+        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary sidebar">
+            <a href="/"
+                class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+                <span class="fs-5 fw-semibold">Cognitech Labs Inbox</span>
+            </a>
+            <div class="list-group list-group-flush border-bottom scrollarea overflow-y-scroll" id="previews"></div>
+        </div>
+        <div class="b-divider b-vr"></div>
+        <div class="d-flex flex-column w-100 container">
+            <header class="d-flex align-items-center pb-3 border-bottom">
+                <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
+                    <h1 class="mt-3" id="email-subject"></span>
+                </a>
+            </header>
+
+            <h5 id="email-sender" class="mt-3"></h5>
+            <p class="d-flex justify-content-between w-100">
+                <span>
+                    <span>To: </span>
+                    <span id="email-recipients">[Recipient];</span>
+                </span>
+
+                <span class="me-2">
+                    <span id="email-day"></span>
+                    <span id="email-date"></span>
+                    <span id="email-time"></span>
+                </span>
+            </p>
+            <p id="email-body">[Body] </p>
+        </div>
+
+        <div class="b-divider b-vr"></div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        const contacts = [
+            {
+                'id': 0,
+                'name': 'Justine Panetta',
+                'email': 'ceo@cognitech.com.au'
+            },
+            {
+                'id': 1,
+                'name': 'Dr Alan Curing',
+                'email': 'alancuring@cognitech-labs.org'
+            }
+        ]
+        const emails = [
+            { // Email 1 - Overview of secret project
+                'date': '2036-04-17T07:14:38.137Z',
+                'subject': 'Hey Justine, Check This Out!',
+                'sender': 1,
+                'recipients': [0],
+                'body': `
+                    Hey Justine,
+                    
+                    Hope everything's going well! I've been brainstorming for our secret project, and I've got an idea I'm really excited about. Imagine this: a dynamic neural interface that learns from users and real-time neural datadata. It could totally change how we think about cognitive enhancement, personalized learning, and even help with neurological conditions.
+
+                    I've started mapping out the basics and potential applications. I know there are ethical considerations and risks, but with careful planning and oversight, I think we can manage it.
+
+                    Would love to chat more about this when you're free. I'd really appreciate your thoughts on this!
+
+                    Take care,
+                    Dr. Alan Curing`,
+                'attachments': []
+            },
+            { // Email 2 -- Breakthrough
+                'date': '2036-05-23T11:12:12.000Z',
+                'subject': 'Detailed Overview of Our New Project Idea',
+                'sender': 1,
+                'recipients': [0],
+                'body': `
+                    Hey Justine,
+                    
+                    Following up on our secret project discussion, I've outlined more details about NeuroConnect. It's a dynamic neural interface designed to adapt based on user feedback and real-time neural data. NeuroConnect promises personalized cognitive enhancement, improved learning, and potential therapeutic benefits for neurological disorders.
+
+                    Our initial steps involve prototyping to showcase its adaptive nature, focusing on algorithm development, user interfaces, and compatibility with existing neural tech. Ethical considerations, safety protocols, and regulations are key focuses as we progress.
+
+                    I'm excited about how NeuroConnect aligns with our vision for neuroscience. Can we chat about timelines and resources soon?
+
+                    Best,
+                    Dr. Alan Curing`,
+                'attachments': []
+            },
+            { // Email 3 -- 
+                'date': '2040-10-09T17:10:20.000Z',
+                'subject': 'Huge Breakthrough!',
+                'sender': 1,
+                'recipients': [0],
+                'body': `
+                    Hey Justine,
+                    
+                    I know it's late, but I couldn't wait to share some exciting news. We've made a significant breakthrough with NeuroConnect! I've been working late into the night, and I believe we're on the cusp of something extraordinary.
+                    
+                    The latest tests show that NeuroConnect can adapt in real-time to neural feedback, achieving levels of personalization we hadn't anticipated. This means users could experience even more profound cognitive enhancements, tailored to their unique neural patterns.
+
+                    I'm thrilled about this progress and eager to discuss next steps. Let's schedule a meeting to dive into the details and strategize how to leverage this breakthrough effectively.
+
+                    Looking forward to our conversation,
+
+                    Best,
+                    Dr. Alan Curing`,
+                'attachments': []
+            },
+            {
+                'date': '2040-10-09T23:15:36.000Z',
+                'subject': 'Expanding NeuroConnect\'s Potential',
+                'sender': 0,
+                'recipients': [1],
+                'body': `Hey Alan,
+                    That's fantastic news about NeuroConnect! Your dedication and late-night breakthroughs are exactly what keeps us at the forefront of innovation. I'm thrilled about the possibilities this presents.
+
+                    Let's discuss how we can commercialize NeuroConnect. Imagine the impact on the market once we demonstrate its capabilities. We could position it as a premium offering, targeting high-net-worth individuals or exclusive industries like executive education and performance optimization. The potential for revenue generation is immense.
+
+                    Of course, we'll need to balance profitability with accessibility. Perhaps we can explore partnerships or licensing agreements to reach a broader market without diluting the technology's value.
+
+                    I'm looking forward to exploring these ideas with you further. Let's schedule a meeting to delve into the commercialization strategy.
+
+                    Best regards,
+                    Justine`,
+                'attachments': []
+            },
+            {
+                'date': '2041-02-14T16:30:21.000Z',
+                'subject': 'NeuroConnect Ethics and Commercialization',
+                'sender': 1,
+                'recipients': [0],
+                'body': `Hey Justine,
+
+                    I appreciate your enthusiasm about commercializing NeuroConnect. However, we must tread carefully regarding ethics. Personalized enhancement raises questions about equity and accessibility. Let's ensure our pricing and distribution strategies align with our values. Additionally, maintaining the integrity of NeuroConnect's benefits over profit maximization should be our priority. I'm open to exploring partnerships that balance commercial success with ethical considerations.
+
+                    Let's discuss this further in our upcoming meeting.
+
+                    Best,
+                    Alan`,
+                'attachments': []
+            },
+            {
+                'date': '2041-02-21T10:24:11.000Z',
+                'subject': 'Commercialization Strategy for NeuroConnect',
+                'sender': 0,
+                'recipients': [1],
+                'body': `Alan,
+
+                    I understand your concerns, but commercializing NeuroConnect is non-negotiable. Our investors expect returns, and this breakthrough presents a lucrative opportunity. We can address ethics while ensuring profitability. Remember, innovation without implementation serves no one. Let's focus on finding solutions that align with our business goals and ethical standards. I expect your full cooperation in this matter.
+
+                    Looking forward to our meeting to finalize the commercialization strategy.
+
+                    Best,
+                    Justine`,
+                'attachments': []
+            },
+            {
+                'date': '',
+                'subject': '',
+                'sender': 1,
+                'recipients': [],
+                'body': '',
+                'attachments': []
+            },
+        ]
+
+        function renderEmail(id) {
+
+            const emailPreview = document.getElementById("email-" + id);
+            const emailRecipients = document.getElementById("email-recipients");
+            const emailSender = document.getElementById("email-sender");
+            const emailDay = document.getElementById("email-day");
+            const emailDate = document.getElementById("email-date");
+            const emailTime = document.getElementById("email-time");
+            const emailBody = document.getElementById("email-body");
+            const emailSubject = document.getElementById("email-subject");
+
+            const email = emails[id];
+
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const emailDateObject = new Date(email.date)
+
+            let finalBody = "";
+            let splits = email.body.trim().split("\n");
+            for (let i = 0; i < splits.length; i++) {
+                finalBody += splits[i] + "<br>";
+            }
+
+            let recipientsHTML = "";
+            let recipientsLength = email.recipients.length;
+            for (let i = 0; i < recipientsLength; i++) {
+                const recipient = contacts[email.recipients[i]];
+                recipientsHTML += `<span type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="${recipient.email}">${recipient.name}</span>`;
+                if ((i + 1) < recipientsLength) {
+                    recipientsHTML += "; ";
+                }
+            }
+
+            let oldPreview = document.querySelectorAll("a.active")[0];
+            if (oldPreview) oldPreview.classList.remove("active");
+
+            emailPreview.classList.add("active");
+            emailBody.innerHTML = finalBody;
+            emailSubject.innerText = email.subject;
+            emailDate.innerText = emailDateObject.toLocaleDateString();
+            emailTime.innerText = emailDateObject.toLocaleTimeString();
+            emailDay.innerText = days[emailDateObject.getDay()];
+            emailSender.innerText = `${contacts[email.sender].name} <${contacts[email.sender].email}>`;
+            emailRecipients.innerHTML = recipientsHTML;
+
+            const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            for (let i = 0; i < recipientsLength; i++) {
+                new bootstrap.Tooltip(tooltips[i])
+            }
+            
+
+        }
+
+        function createEmail(email, id) {
+            const trimmedBody = email.body.replace(/<[^>]*>?/gm, '').replace(/\n/g, '').replace(/\s\s+/g, ' ').replace(/&nbsp;/g, ' ').substring(0, 60);
+            const template = `<a href="#" class="list-group-item list-group-item-action py-3 lh-sm" id="email-${id}" onclick="renderEmail(${id})">
+                <span class="pb-1 me-2 text-truncate d-block">${contacts[email.sender].name} - ${contacts[email.sender].email}</span>
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                <span class="pb-1 me-2 text-truncate">${email.subject}</span>
+                <small>${new Date(email.date).toLocaleDateString()}</small>
+                </div>
+                <div class="col-10 pb-1 small text-truncate">${trimmedBody}</div>
+            </a>`;
+            document.getElementById("previews").innerHTML += template;
+        }
+        for (let i = emails.length - 1 ; i >= 0; i--) {
+            createEmail(emails[i], i);
+        }
+        renderEmail(emails.length - 1);
+
+    </script>
+
+
+</body>
+
+</html>
