@@ -7,7 +7,7 @@ const port = 3000;
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-    res.setHeader('SECRET_DATA', '_flag_');
+    res.setHeader('Part_3', 'n3uroconn3ct}');
     next();
 });
 
