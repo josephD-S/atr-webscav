@@ -39,6 +39,10 @@
                 width: 350px;
             }
 
+            #mobile-toggle {
+                display: none!important;
+            }
+
             .email-content {
                 padding-top: 0;
             }
@@ -56,16 +60,16 @@
     <main class="d-flex flex-nowrap vh-100">
 
         <!-- MOBILE -->
-        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary sidebar">
+        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary sidebar position-absolute z-2" id="mobile-toggle">
             <span class="d-flex align-items-center flex-shrink-0 p-3 text-decoration-none border-bottom">
-                <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation" onclick="togglePreviews()">
                     <span class="navbar-toggler-icon me-2"></span>
                   </button>
                 <span class="fs-5 fw-semibold">Cognitech Labs Inbox</span>
             </span>
         </div>
 
-        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary sidebar">
+        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary sidebar" id="email-previews">
             <span
                 class="d-flex align-items-center flex-shrink-0 p-3 text-decoration-none border-bottom">
                 <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
@@ -371,6 +375,17 @@
             createEmail(emails[i], i);
         }
         renderEmail(emails.length - 1);
+
+        function togglePreviews() {
+            const element = document.getElementById("email-previews");
+            if (element.classList.contains("d-flex")) {
+                element.classList.remove("d-flex");
+                element.classList.add("d-none");
+            } else {
+                element.classList.add("d-flex");
+                element.classList.remove("d-none");
+            }
+        }
 
     </script>
 
