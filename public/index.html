@@ -158,7 +158,7 @@
 
                     Let's ensure Alan doesn't become a holiday elf permanently glued to his workstation. A sprinkle of work-life balance could be our secret gift to him. How about we lure him out with the promise of eggnog and a mini Yule log?
 
-                    Also I was thinking of upgrading our web security, especially for these emails, I'm going to try figure out a way to stop our email website from getting search on google. 
+                    Also I was thinking of upgrading our web security, especially for these emails, I'm going to try figure out a way to stop our email website from getting crawled on google. 
 
                     Anyway, thanks for watching over our holiday lab rat.
 
@@ -183,7 +183,7 @@
                     Alan Curing`,
                 'attachments': []
             },
-            { // Email 6 -- CEO to Alan with Bill CC'd, 
+            { // Email 6 -- CEO to Alan with Bill CC'd, I wonder what's this FOR?
                 'date': '2041-02-14T16:30:21.000Z',
                 'subject': 'Workload Check-In: Keeping the Lab Balanced',
                 'sender': 0,
@@ -200,7 +200,7 @@
                     Justine`,
                 'attachments': []
             },
-            { // Email 7 -- Email from Alan to CEO, sending a coded message, you'll need this: https://www.cs.du.edu/~snarayan/crypt/vigenere.html
+            { // Email 7 -- Email from Alan to CEO
                 'date': '2041-02-21T10:24:11.000Z',
                 'subject': 'Concerns relating to the project',
                 'sender': 1,
@@ -211,7 +211,8 @@
                     Check this out:
 
                     tse cjclsqe hls usr c pwe oq a uaqeid. znp os git jcwuytrwfu vod *swichsf* obo dteq!
-                     a uwsgd wp mnq pg opwe eo vedtcjp czgaahkcb, mue wr uop'h wxpcoiw qqcfoiyagacp :d
+                    a uwsgd wp mnq pg opwe eo vedtcjp czgaahkcb, mue wr uop'h wxpcoiw qqcfoiyagacp :d 
+                    dlre 2: ufwgxis
                     
                     It's a bit finicky at the moment but we're getting there!
                     
@@ -219,12 +220,55 @@
                     Alan`,
                 'attachments': []
             },
-            {
-                'date': '',
-                'subject': '',
+            { // Email 8 -- CEO to Alan serious concerns about the safety of the product
+                'date': '2041-09-18T14:39:44.000Z',
+                'subject': 'Serious Project Concerns',
+                'sender': 0,
+                'recipients': [1],
+                'body': `Dear Alan,
+
+                    I'm gravely concerned about the project's recent developments—it's starting to feel like a horror movie with volunteer guinea pigs. Can't have our lab turning into a mad scientist's lair!
+
+                    Let's schedule a meeting ASAP to discuss before our volunteers start demanding hazard pay. We need to balance progress with keeping everyone alive and sane.
+
+                    Let's address these concerns seriously and with urgency.
+
+                    Best,
+                    Justine`,
+                'attachments': []
+            },
+            {  // Email 9 -- Alan not worrying about it, seems uncaring in his pursuit of the technology
+                'date': '2041-09-19T11:04:35.000Z',
+                'subject': 'Project Status: Everything\'s Fine (Seriously)',
                 'sender': 1,
-                'recipients': [],
-                'body': '',
+                'recipients': [0],
+                'body': `Dear Justine,
+
+                    I understand your concerns, but I assure you, the lab hasn't turned into a B-grade horror flick... yet. Our volunteers are still human, not lab experiments gone wrong.
+
+                    Let's chat soon to ease your worries. Remember, my middle name is "Safety First" (well, not really, but it should be).
+
+                    Thanks for keeping an eye out, but trust me, everything's as stable as a caffeinated scientist.
+
+                    Best,
+                    Alan`,
+                'attachments': []
+            },
+            {  // Email 10 -- Final: Justine threatens to shut down the project
+                'date': '2042-04-20T11:04:35.000Z',
+                'subject': 'Serious Business',
+                'sender': 0,
+                'recipients': [1],
+                'body': `Dear Alan,
+
+                    It's time to close the curtains on our lab drama. No more mad scientist shenanigans—we'll leave that to the B-movie villains.
+
+                    Let's meet to discuss wrapping things up. Remember, when life gives you lab accidents, make lemonade (but don't drink it from a beaker).
+
+                    Your cooperation in this decision is appreciated, even if it means saying goodbye to our potential world-conquering invention.
+
+                    Worst,
+                    Justine`,
                 'attachments': []
             },
         ]
@@ -274,8 +318,9 @@
             emailRecipients.innerHTML = recipientsHTML;
 
             const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-            for (let i = 0; i < recipientsLength; i++) {
-                new bootstrap.Tooltip(tooltips[i])
+            for (let i = 0; i < recipientsLength; i++) { 
+                new bootstrap.Tooltip(tooltips[i]) 
+                // You'll need this: https://www.cs.du.edu/~snarayan/crypt/vigenere.html
             }
             
 
